@@ -1,17 +1,16 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
-import { books } from './components/data'
+import { books, pokemons } from './components/data'
 import NavBar from "./components/NavBar"
 import ItemListContainer from './components/ItemListContainer'
 
 export default function Home() {
-   const items = books
 
   return (
     <div>
       <NavBar />
-      <ItemListContainer items={items} />
+      <ItemListContainer items={books} title={'Livros'} />
+      <ItemListContainer items={pokemons} title={'Pokemons'}/>
     </div>
   )
 }

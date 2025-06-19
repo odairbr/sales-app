@@ -1,17 +1,11 @@
 import { ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 const CartWidget: React.FC = () => {
-  const [count, setCount] = useState(0);
-
-  const increment = () => {
-    setCount(prev => prev + 1);
-  };
-
-  const decrement = () => {
-    setCount(prev => Math.max(0, prev - 1));
-  };
+  // const [count, setCount] = useState(0);
+  // const increment = () => { setCount(prev => prev + 1); };
+  // const decrement = () => { setCount(prev => Math.max(0, prev - 1)); };
 
   return (
     <Button 
