@@ -11,7 +11,6 @@ interface ItenListProps {
   items: Item[];
 }
 
-
 export default function ItemListContainer({ items, title }: ItenListProps) {
 
   const listItem = items.map(item =>
@@ -29,10 +28,14 @@ export default function ItemListContainer({ items, title }: ItenListProps) {
           {item.available ? <Check /> : <X />}
         </div>
 
-        <span className={`text-lg font-light tracking-wide ${item.available ? '' : 'line-through'
+        <div className={` ${item.available
+            ? 'bg-amber-450 border-amber-95'
+            : 'bg-amber-50 border-amber-950'
           }`}>
-          {item.name}
-        </span>
+          <span className={`text-lg font-light tracking-wide ${item.available ? '' : 'line-through' }`}>
+            {item.name}
+          </span>
+        </div>
         <div className={` ${item.available
             ? 'bg-amber-450 border-amber-95'
             : 'bg-amber-50 border-amber-950'
