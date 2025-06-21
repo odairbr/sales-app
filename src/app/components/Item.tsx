@@ -1,9 +1,16 @@
 import { Check, X } from 'lucide-react';
+
 interface ItemComponent {
   item: ItemProps
 }
 
-//const Item: React.FC<ItemProps> = (item) => {
+interface ItemProps {
+  id: number;
+  name: string;
+  amount: number;
+  available: boolean;
+}
+
 function Item ({ item }: ItemComponent ) {
   return (
     

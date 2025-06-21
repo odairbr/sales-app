@@ -1,6 +1,15 @@
-
-import { Check, X } from 'lucide-react';
 import Item from './Item'
+interface ItemListProps {
+  title: string;
+  items: ItemProps[];
+}
+
+interface ItemProps {
+  id: number;
+  name: string;
+  amount: number;
+  available: boolean;
+}
 
 export default function ItemListContainer({ items, title }: ItemListProps) {
 
@@ -8,10 +17,7 @@ export default function ItemListContainer({ items, title }: ItemListProps) {
     <div className="bg-white/95 backdrop-blur-sm border-b border-amber-100 top-0 z-50 p-8">
       <span className="text-2xl text-amber-700"> {title} </span>
       <ul className='space-y-4'>
-        { items.map( (item) => (
-          <Item item={item} />
-        ))}
-        
+        { items.map( (item) => (<Item item={item} key={item.id} />))}
       </ul>
     </div>
   )
