@@ -17,15 +17,17 @@ export default function Home() {
   return (
     <div className="text-0xl text-amber-700">
       <NavBar />
-      <div className="text-2xl font-bold">
-        Categoria atual: {category}
-      </div>
+      <div className="container space-x-2 p-2">
+        <div className="text-2xl font-bold">
+          Categoria atual: {category}
+        </div>
 
-      <Button onClick={changeType}> {categoryToggle} </Button>
-      {category == 'books'
-        ? <ItemListContainer items={books} title={'Livros'} />
-        : <ItemListContainer items={pokemons} title={'Pokemons'} />
-      }
+        <Button onClick={changeType}> {categoryToggle} </Button>
+        {category == 'books'
+          ? <ItemListContainer items={books} title={'Livros'} />
+          : <ItemListContainer items={pokemons} title={'Pokemons'} />
+        }
+      </div>
 
       <Footer />
     </div>
