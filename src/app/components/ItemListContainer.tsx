@@ -1,6 +1,6 @@
 import Item from './Item'
 interface ItemListProps {
-  title: string;
+  title?: string;
   items: ItemProps[];
 }
 

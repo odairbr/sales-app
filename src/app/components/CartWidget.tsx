@@ -1,20 +1,48 @@
 import { ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-// import { useState } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import ItemListContainer from './ItemListContainer'
+import { cartItems } from './data'
 
 const CartWidget: React.FC = () => {
-  // const [count, setCount] = useState(0);
-  // const increment = () => { setCount(prev => prev + 1); };
-  // const decrement = () => { setCount(prev => Math.max(0, prev - 1)); };
 
   return (
-    <Button variant="outline" size="sm" className="relative">
-      <ShoppingCart className="h-4 w-4 mr-2" />
-      Cart
-      <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-        3
-      </span>
-    </Button>
+    <Dialog >
+      <DialogTrigger asChild>
+        <Button variant="outline" size="sm" className="relative">
+          <ShoppingCart className="h-4 w-4 mr-2" />
+          Cart
+          <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+            3
+          </span>
+        </Button>
+      </DialogTrigger>
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle className="text-0xl text-amber-700"> 
+            <ShoppingCart className="h-4 w-4 mr-2" />
+          </DialogTitle>
+          <DialogDescription className="text-0xl text-amber-700">
+            Carrinho
+          </DialogDescription>
+        </DialogHeader>
+
+        <ItemListContainer items={cartItems} />
+
+        <DialogFooter>
+          <Button onClick={() => alert('Working in progress!')}> submit </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }
 

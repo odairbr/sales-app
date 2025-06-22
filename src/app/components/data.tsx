@@ -13,3 +13,9 @@ export const pokemons = [
   { id: 4, name: 'Bulbasaur', amount: 12.23, available: true },
   { id: 5, name: 'Buterfree', amount: 12.23, available: true },
 ]
+
+export const cartItems = [
+  books[1],
+  books[3],
+  pokemons[4]
+]
