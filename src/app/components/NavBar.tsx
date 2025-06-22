@@ -12,7 +12,7 @@ const Header = () => {
             <Book className="h-6 w-6 text-white" />
           </div>
           <span className="text-2xl font-bold bg-gradient-to-r from-amber-700 to-orange-800 bg-clip-text text-transparent">
-            BookHaven
+            SalesApp
           </span>
         </div>
 
@@ -21,8 +21,8 @@ const Header = () => {
           <CartWidget />
 
           {/* Login Button */}
-          <Button 
-            className="bg-gradient-to-r from-amber-600 to-orange-700 hover:from-amber-700 hover:to-orange-800 text-white shadow-lg hover:shadow-xl transition-all duration-200"
+          <Button
+            onClick={() => alert('Working in progress!')}
           >
             <LogIn className="h-4 w-4 mr-2" />
             Login
