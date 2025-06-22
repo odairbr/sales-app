@@ -1,6 +1,6 @@
-import { Book, LogIn } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Book } from 'lucide-react';
 import CartWidget from './CartWidget'
+import Login from './Login'
 
 const Header = () => {
   return (
@@ -21,12 +21,7 @@ const Header = () => {
           <CartWidget />
 
           {/* Login Button */}
-          <Button
-            onClick={() => alert('Working in progress!')}
-          >
-            <LogIn className="h-4 w-4 mr-2" />
-            Login
-          </Button>
+          <Login />
         </div>
       </div>
     </header>
