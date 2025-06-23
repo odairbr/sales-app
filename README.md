@@ -25,3 +25,5 @@ npm run dev
 
 Abrir no browser [http://localhost:3000](http://localhost:3000)
 
+## Deploy no Vercel
+- [live](https://crie-sua-landing-rosa-fxnr.vercel.app/)

@@ -16,8 +16,8 @@ const Header = () => {
           </span>
         </div>
 
-        {/* Cart Widget */}
         <div className="flex items-center space-x-6">
+          {/* Cart Widget */}
           <CartWidget />
 
           {/* Login Button */}
