@@ -12,10 +12,10 @@ import {
 import ItemListContainer from './ItemListContainer'
 import { cartItems } from './data'
 
-const CartWidget: React.FC = () => {
+function CartWidget () {
 
   return (
-    <Dialog >
+    <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm" className="relative">
           <ShoppingCart className="h-4 w-4 mr-2" />
@@ -28,21 +28,16 @@ const CartWidget: React.FC = () => {
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-0xl text-amber-700"> 
-            <ShoppingCart className="h-4 w-4 mr-2" />
-          </DialogTitle>
-          <DialogDescription className="text-0xl text-amber-700">
-            Carrinho
-          </DialogDescription>
+          <DialogTitle> Carrinho </DialogTitle>
+          <DialogDescription> Carrinho </DialogDescription>
         </DialogHeader>
-
         <ItemListContainer items={cartItems} />
-
         <DialogFooter>
           <Button onClick={() => alert('Working in progress!')}> submit </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
+
   )
 }
 
