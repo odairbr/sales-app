@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button'
 
-import { books, pokemons } from './components/data'
-import ItemListContainer from './components/ItemListContainer'
+import { books, pokemons } from '../components/data'
+import ItemListContainer from '../components/ItemListContainer'
 
 export default function Home() {
   const [category, setCategory] = useState('books');

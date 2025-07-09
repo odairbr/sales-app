@@ -40,9 +40,7 @@ const Login = () => {
           <Input type="password" id="password" />
         </div>
         <DialogFooter>
-          <Button
-            type="submit"
-          >
+          <Button>
             <LogIn className="h-4 w-4 mr-2" />
             Login
           </Button>

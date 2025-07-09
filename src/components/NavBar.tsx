@@ -1,3 +1,5 @@
+'use client'
+
 import { Book } from 'lucide-react';
 import CartWidget from './CartWidget'
 import Login from './Login'

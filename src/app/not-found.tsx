@@ -8,7 +8,7 @@ export default function NotFound() {
         <div className="text-2xl font-bold text-amber-700">
           <h2>Pagina inexistente</h2>
           <p>volte para home</p>
-          <Button variant='ghost' size='lg'>
+          <Button variant='ghost' size='lg' >
             <Link href="/">Home</Link>
           </Button>
         </div>
