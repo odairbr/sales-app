@@ -14,9 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 const Login = () => {
-  function onSubmit(){
-    alert(' O login ainda está em desenvolvimento!')
-  }
+  
   return (
     <Dialog >
       <DialogTrigger asChild>
@@ -44,7 +42,6 @@ const Login = () => {
         <DialogFooter>
           <Button
             type="submit"
-            onClick={onSubmit} 
           >
             <LogIn className="h-4 w-4 mr-2" />
             Login

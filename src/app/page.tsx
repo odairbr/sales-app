@@ -4,9 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button'
 
 import { books, pokemons } from './components/data'
-import NavBar from "./components/NavBar"
 import ItemListContainer from './components/ItemListContainer'
-import Footer from './components/Footer'
 
 export default function Home() {
   const [category, setCategory] = useState('books');
@@ -16,7 +14,6 @@ export default function Home() {
 
   return (
     <div className="text-0xl text-amber-700">
-      <NavBar />
       <div className="container space-x-2 p-2">
         <div className="text-2xl font-bold">
           Categoria atual: {category}
@@ -28,8 +25,6 @@ export default function Home() {
           : <ItemListContainer items={pokemons} title={'Pokemons'} />
         }
       </div>
-
-      <Footer />
     </div>
   )
 }
