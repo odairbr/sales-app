@@ -1,15 +1,7 @@
 import { Check, X } from 'lucide-react';
+import { ItemComponent } from '@/shared/interfaces/item.interface';
 
-interface ItemComponent {
-  item: ItemProps
-}
 
-interface ItemProps {
-  id: number;
-  name: string;
-  amount: number;
-  available: boolean;
-}
 
 function Item ({ item }: ItemComponent ) {
   return (

@@ -1,15 +1,5 @@
 import Item from './Item'
-interface ItemListProps {
-  title?: string;
-  items: ItemProps[];
-}
-
-interface ItemProps {
-  id: number;
-  name: string;
-  amount: number;
-  available: boolean;
-}
+import { ItemListProps } from '@/shared/interfaces/item.interface'
 
 export default function ItemListContainer({ items, title }: ItemListProps) {
 
