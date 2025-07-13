@@ -6,7 +6,7 @@ import { ItemComponent } from '@/shared/interfaces/item.interface';
 function Item ({ item }: ItemComponent ) {
   return (
     
-    <li key={item.id}
+    <div key={item.id}
       className={`p-4 border ${item.available
           ? 'border-amber-400 bg-white/95 text-black-95'
           : 'border-amber-800 bg-white/950 text-black-950'
@@ -39,7 +39,7 @@ function Item ({ item }: ItemComponent ) {
         </div>
 
       </div>
-    </li>
+    </div>
   
   )
 }

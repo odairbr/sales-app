@@ -1,6 +1,7 @@
 'use client'
 
 import { Book } from 'lucide-react';
+import Link from 'next/link'
 import CartWidget from './CartWidget'
 import Login from './Login'
 
@@ -17,6 +18,10 @@ const Header = () => {
             SalesApp
           </span>
         </div>
+
+        <span className="text-xl bg-gradient-to-r from-amber-700 to-orange-800 bg-clip-text text-transparent">
+          <Link href='/produtos'>Produtos</Link>
+        </span>
 
         <div className="flex items-center space-x-6">
           {/* Cart Widget */}

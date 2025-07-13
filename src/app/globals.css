@@ -116,7 +116,52 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
+
+.grid-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+/* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.page-button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: var(--color-orange-800);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: bold;
+}
+
+.page-button:hover:not(:disabled) {
+  background-color: var(--color-amber-100);
+  transform: translateY(-2px);
+}
+
+.page-button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.page-number {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-orange-800);
+}
+
+/* pagination */
