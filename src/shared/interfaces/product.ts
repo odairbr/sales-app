@@ -1,23 +1,13 @@
-interface RatingProps {
-  rate: number;
-  count: number;
-}
 interface CategoryProps {
-  id: number;
+  id: string;
   name: string;
-  slug: string;
-  image: string;
-  creationAt: string;
-  updatedAt: string;
 }
 export interface ProductProps {
-  id: number;
-  title: string;
+  id: string;
+  name: string;
   price: number;
   description: string;
   category: CategoryProps;
-  images: string[];
-  rating: RatingProps;
-  creationAt: string;
-  updatedAt: string;
+  image: string;
+  quantity: number;
 }

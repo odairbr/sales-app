@@ -4,6 +4,9 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ProductProps } from "@/shared/interfaces/product";
+import { db } from "@/config/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { Label } from "@/components/ui/label";
 
 
 
@@ -15,17 +18,27 @@ export default function ProductPage() {
     async function fetchProduct() {
       const id = params.id
       try {
-        const response = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`);
-        if (!response.ok) {
-          throw new Error(`Erro ao requisistar: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log("Dados recebidos: ", data)
+        const docRef = doc(db, "products", String(id));
+        const docSnap = await getDoc(docRef);
 
-        setProduct(data)
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+          setProduct({
+            id: docSnap.id,
+            name: docSnap.data().name,
+            price: docSnap.data().price,
+            description: docSnap.data().description,
+            category: docSnap.data().category,
+            image: docSnap.data().image,
+            quantity: docSnap.data().quantity,
+          })
+        } else {
+          // docSnap.data() will be undefined in this case
+          console.log("No such document!");
+        }
       } catch (error) {
         console.error("Erro ao buscar/criar post: ", error)
-      } 
+      }
     }
     fetchProduct()
   }, [params.id])
@@ -48,19 +61,39 @@ export default function ProductPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="aspect-square relative rounded-lg overflow-hidden bg-gray-100">
               <Image
-                src={product.images[0]}
-                alt={product.title}
-                priority={false} 
+                src={product.image}
+                alt={product.name}
+                priority={false}
                 width={500}
                 height={500}
                 className="hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="space-y-6">
-              <div className="text-2xl text-amber-700"> {product.id} </div>
-              <div className="text-2xl text-amber-700"> {product.title} </div>
-              <div className="text-2xl text-amber-700"> {product.price} </div>
-              <div className="text-2xl text-amber-700"> {product.description} </div>
+              <div className="text-2xl text-amber-700">
+                <Label className="text-amber-500">
+                  Id:
+                </Label>
+                {product.id}
+              </div>
+              <div className="text-2xl text-amber-700">
+                <Label className="text-amber-500">
+                  Nome:
+                </Label>
+                {product.name}
+              </div>
+              <div className="text-2xl text-amber-700">
+                <Label className="text-amber-500">
+                  Preço:
+                </Label>
+                {product.price}
+              </div>
+              <div className="text-2xl text-amber-700">
+                <Label className="text-amber-500">
+                  Descrição:
+                </Label>
+                {product.description}
+              </div>
             </div>
           </div>
         </div>

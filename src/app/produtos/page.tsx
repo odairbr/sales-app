@@ -1,19 +1,14 @@
 'use client'
 
 import Categories from "@/components/Categories";
+import { db } from "@/config/firebase";
 import { ProductProps } from "@/shared/interfaces/product";
+import { collection, getDocs } from "firebase/firestore";
 import { StepBack, StepForward } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
-const categories: Record<string, number> = {
-  "clothes": 1,
-  "electronics": 2,
-  "furniture": 3,
-  "shoes": 4
-}
 export default function ProductsPage() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
@@ -23,34 +18,35 @@ export default function ProductsPage() {
 }
 
 function Products() {
-  const searchParams = useSearchParams();
-  const categoryId = categories[searchParams.get('category') as string]
-
   const [page, setPage] = useState(0)
   const [products, setProducts] = useState<ProductProps[]>([])
+
+  const productsCollectionRef = collection(db, 'products')
   useEffect(() => {
-    async function fetchProduct() {
-      const limit = 4
-      const offset = limit * page
+    const getProductList = async () => {
       try {
-        const url = !!categoryId ?
-          `https://api.escuelajs.co/api/v1/categories/${categoryId}/products?limit=${limit}&offset=${offset}` :
-          `https://api.escuelajs.co/api/v1/products?limit=${limit}&offset=${offset}`
+        const data = await getDocs(productsCollectionRef)
 
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Erro ao requisistar: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log("Dados recebidos: ", data)
+        const filteredData = data.docs.map((doc) => ({
+          id: doc.id,
+          name: doc.data().name,
+          price: doc.data().price,
+          description: doc.data().description,
+          category: doc.data().category,
+          image: doc.data().image,
+          quantity: doc.data().quantity,
+        }))
 
-        setProducts(data)
-      } catch (error) {
-        console.error("Erro ao buscar/criar post: ", error)
+        setProducts(filteredData)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        console.log('produtos buscados')
       }
     }
-    fetchProduct()
-  }, [page, categoryId])
+    getProductList();
+  }, [page])
+
 
   // Paginação
   function nextPage() {
@@ -88,8 +84,8 @@ function Products() {
                   <div key={product.id} className="product-card">
                     <Link href={`/produtos/${product.id}`} className="block">
                       <Image
-                        src={product.images[0]}
-                        alt={product.title}
+                        src={product.image}
+                        alt={product.name}
                         priority={false}
                         width={250}
                         height={250}
@@ -97,7 +93,7 @@ function Products() {
                       />
                     </Link>
 
-                    <div className="text-2xl text-amber-700"> {product.title} </div>
+                    <div className="text-2xl text-amber-700"> {product.name} </div>
                   </div>
                 ))}
               </div>

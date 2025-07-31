@@ -22,6 +22,13 @@ const Header = () => {
         <span className="text-xl bg-gradient-to-r from-amber-700 to-orange-800 bg-clip-text text-transparent">
           <Link href='/produtos'>Produtos</Link>
         </span>
+        {false ?
+          <span className="text-xl bg-gradient-to-r from-amber-700 to-orange-800 bg-clip-text text-transparent">
+            <Link href='/crud'>crud</Link>
+          </span>
+          : ''
+        }
+
 
         <div className="flex items-center space-x-6">
           {/* Cart Widget */}
