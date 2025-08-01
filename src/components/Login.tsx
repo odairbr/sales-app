@@ -46,7 +46,7 @@ const Login = () => {
       console.log('Logado')
     }
   };
-  
+
   const logout = async () => {
     try {
       await signOut(auth);
@@ -79,7 +79,7 @@ const Login = () => {
           </DialogDescription>
         </DialogHeader>
         {logged ?
-          <span> {auth?.currentUser?.displayName} </span> :
+          <span> {auth?.currentUser?.displayName || auth?.currentUser?.email} </span> :
           <div className="grid w-full max-w-sm items-center gap-3">
             <Label htmlFor="email">Email</Label>
             <Input
@@ -97,18 +97,22 @@ const Login = () => {
           </div>
         }
         <DialogFooter>
-          <Button onClick={(signInWithGoogle)}>
-            <LogIn className="h-4 w-4 mr-2" />
-            Google
-          </Button>
-          <Button onClick={(signIn)}>
-            <LogIn className="h-4 w-4 mr-2" />
-            Login
-          </Button>
-          <Button onClick={(logout)}>
-            <LogOut className="h-4 w-4 mr-2" />
-            Logout
-          </Button>
+          {!logged ?
+            <>
+              <Button onClick={(signIn)}>
+                <LogIn className="h-4 w-4 mr-2" />
+                Login
+              </Button>
+              <Button onClick={(signInWithGoogle)}>
+                <LogIn className="h-4 w-4 mr-2" />
+                Google
+              </Button>
+            </> :
+            <Button onClick={(logout)}>
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
+            </Button>
+          }
         </DialogFooter>
       </DialogContent>
     </Dialog>
