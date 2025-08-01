@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface CartItem {
   id: string;
@@ -10,12 +10,17 @@ interface CartItem {
 
 interface CartContextType {
   cart: CartItem[];
+  totalItems: number;
   addToCart: (item: CartItem) => void;
 }
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([])
+  const [totalItems, setTotalItems] = useState(0)
+  const sumTotal = (items: CartItem[]) => {
+    return items.reduce((total, item) => total + item.quantity, 0)
+  }
 
   const addToCart = (item: CartItem) => {
     const presentItem = cart.find((i) => i.id === item.id)
@@ -26,15 +31,18 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
           { ...i, quantity: i.quantity + 1 } :
           i
       )
-      return setCart(items)
+      setCart(items)
     } else {
-      return setCart([...cart, { ...item, quantity: 1 }])
+      setCart([...cart, { ...item, quantity: 1 }])
     }
+
   }
+
+  useEffect(() => { setTotalItems(sumTotal(cart)) }, [totalItems, cart])
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart }}
+      value={{ cart, addToCart, totalItems }}
     >
       {children}
     </CartContext.Provider>
