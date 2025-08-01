@@ -19,11 +19,14 @@ import { auth, googleProvider } from '@/config/firebase';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [logged, setLogged] = useState(false);
   console.log(auth?.currentUser?.email)
 
   const signIn = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+
+      setLogged(true)
     } catch (err) {
       console.error(err)
     } finally {
@@ -32,9 +35,23 @@ const Login = () => {
     }
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+
+      setLogged(true)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      console.log('Logado')
+    }
+  };
+  
   const logout = async () => {
     try {
       await signOut(auth);
+
+      setLogged(false)
     } catch (err) {
       console.error(err)
     } finally {
@@ -43,15 +60,6 @@ const Login = () => {
     console.log('User signOut after')
   };
 
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (err) {
-      console.error(err)
-    } finally {
-      console.log('Logado')
-    }
-  };
 
   return (
     <Dialog >
@@ -70,7 +78,7 @@ const Login = () => {
             Login
           </DialogDescription>
         </DialogHeader>
-        {auth?.currentUser?.email ?
+        {logged ?
           <span> {auth?.currentUser?.displayName} </span> :
           <div className="grid w-full max-w-sm items-center gap-3">
             <Label htmlFor="email">Email</Label>
