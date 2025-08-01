@@ -7,12 +7,16 @@ import { ProductProps } from "@/shared/interfaces/product";
 import { db } from "@/config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { Label } from "@/components/ui/label";
+import { useCart } from "@/contexts/cart";
+import { Button } from "@/components/ui/button";
+import { PlusCircleIcon } from "lucide-react";
 
 
 
 export default function ProductPage() {
   const params = useParams();
   const [product, setProduct] = useState<ProductProps>()
+  const { addToCart } = useCart()
 
   useEffect(() => {
     async function fetchProduct() {
@@ -93,6 +97,17 @@ export default function ProductPage() {
                   Descrição:
                 </Label>
                 {product.description}
+              </div>
+              <div>
+                <Button onClick={() => addToCart({
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  quantity: 1
+                })}
+                >
+                  <PlusCircleIcon />
+                </Button>
               </div>
             </div>
           </div>
