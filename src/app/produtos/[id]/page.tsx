@@ -9,14 +9,14 @@ import { doc, getDoc } from "firebase/firestore";
 import { Label } from "@/components/ui/label";
 import { useCart } from "@/contexts/cart";
 import { Button } from "@/components/ui/button";
-import { PlusCircleIcon } from "lucide-react";
+import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
 
 
 
 export default function ProductPage() {
   const params = useParams();
   const [product, setProduct] = useState<ProductProps>()
-  const { addToCart } = useCart()
+  const { addToCart, removeFromCart } = useCart()
 
   useEffect(() => {
     async function fetchProduct() {
@@ -99,15 +99,23 @@ export default function ProductPage() {
                 {product.description}
               </div>
               <div>
-                <Button onClick={() => addToCart({
-                  id: product.id,
-                  name: product.name,
-                  price: product.price,
-                  quantity: 1
-                })}
-                >
-                  <PlusCircleIcon />
-                </Button>
+                <span className="px-1">
+                  <Button onClick={() => addToCart({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1
+                  })}
+                  >
+                    <PlusCircleIcon />
+                  </Button>
+                </span>
+
+                <span className="px-1">
+                  <Button onClick={() => removeFromCart(product.id)}>
+                    <MinusCircleIcon />
+                  </Button>
+                </span>
               </div>
             </div>
           </div>
