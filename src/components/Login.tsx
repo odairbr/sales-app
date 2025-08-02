@@ -20,7 +20,6 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [logged, setLogged] = useState(false);
-  console.log(auth?.currentUser?.email)
 
   const signIn = async () => {
     try {
@@ -29,9 +28,6 @@ const Login = () => {
       setLogged(true)
     } catch (err) {
       console.error(err)
-    } finally {
-      console.log('finally')
-      console.log(auth.currentUser?.email)
     }
   };
 
@@ -42,8 +38,6 @@ const Login = () => {
       setLogged(true)
     } catch (err) {
       console.error(err)
-    } finally {
-      console.log('Logado')
     }
   };
 
@@ -54,10 +48,7 @@ const Login = () => {
       setLogged(false)
     } catch (err) {
       console.error(err)
-    } finally {
-      console.log('User signOut')
     }
-    console.log('User signOut after')
   };
 
 

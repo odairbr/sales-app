@@ -6,6 +6,7 @@ import CartWidget from './CartWidget'
 import Login from './Login'
 
 const Header = () => {
+
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-amber-100 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -15,7 +16,9 @@ const Header = () => {
             <Book className="h-6 w-6 text-white" />
           </div>
           <span className="text-2xl font-bold bg-gradient-to-r from-amber-700 to-orange-800 bg-clip-text text-transparent">
-            SalesApp
+            <Link href='/'>
+              SalesApp
+            </Link>
           </span>
         </div>
 
@@ -28,7 +31,6 @@ const Header = () => {
           </span>
           : ''
         }
-
 
         <div className="flex items-center space-x-6">
           {/* Cart Widget */}
