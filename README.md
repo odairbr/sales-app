@@ -3,7 +3,7 @@
 ## Sobre o projeto
 
 Projeto de exercício do curso de ReactJS na CoderHouse. O projeto é sobre um
-ecommerce com o tema de uma livraria
+ecommerce
 
 ## Dependência
 

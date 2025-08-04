@@ -43,7 +43,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-amber-800 mt-12 pt-8 text-center">
-          <p className="text-amber-200">&copy; 2025 SalesApp. Based on Lovable.</p>
+          <p className="text-amber-200">&copy; 2025 SalesApp.</p>
         </div>
       </div>
     </footer>
