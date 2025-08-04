@@ -2,11 +2,10 @@
 
 import Categories from "@/components/Categories";
 import useFetchProducts from "@/components/db/products";
-import { StepBack, StepForward } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 
 export default function ProductsPage() {
   return (
@@ -17,22 +16,9 @@ export default function ProductsPage() {
 }
 
 function Products() {
-  const [page, setPage] = useState(0)
-
   const searchParams = useSearchParams();
   const categoryId = searchParams.get('category') as string
-  console.log(`categoryId: ${categoryId}`)
   const { products } = useFetchProducts(categoryId as string)
-
-  // Paginação
-  function nextPage() {
-    setPage(page + 1);
-  }
-  function prevPage() {
-    if (page > 0) {
-      setPage(page - 1);
-    }
-  }
 
   if (!products[0]) {
     return (
@@ -70,25 +56,9 @@ function Products() {
                     </Link>
 
                     <div className="text-2xl text-amber-700"> {product.name} </div>
+                    <div className="text-2xl text-amber-700"> R$ {product.price} </div>
                   </div>
                 ))}
-              </div>
-              <div className="pagination">
-                <button
-                  onClick={prevPage}
-                  disabled={page === 0}
-                  className="page-button"
-                >
-                  <StepBack className="h-4 w-4 mr-2" />
-                </button>
-                <span className="page-number">{page}</span>
-                <button
-                  onClick={nextPage}
-                  className="page-button"
-                >
-                  <StepForward className="h-4 w-4 mr-2" />
-
-                </button>
               </div>
             </div>
           </div>
