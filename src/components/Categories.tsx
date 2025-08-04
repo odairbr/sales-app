@@ -5,16 +5,10 @@ const Categories = () => {
   return (
     <div>
       <Button variant='ghost' size='lg' >
-        <Link href="/produtos?category=electronics">Eletronicos</Link>
+        <Link href="/produtos?category=laptop">Laptops</Link>
       </Button>
       <Button variant='ghost' size='lg' >
-        <Link href="/produtos?category=clothes">Roupas</Link>
-      </Button>
-      <Button variant='ghost' size='lg' >
-        <Link href="/produtos?category=furniture">Moveis</Link>
-      </Button>
-       <Button variant='ghost' size='lg' >
-        <Link href="/produtos?category=shoes">Calçados</Link>
+        <Link href="/produtos?category=cadeira">Cadeiras</Link>
       </Button>
     </div>
   )

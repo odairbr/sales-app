@@ -1,8 +1,9 @@
 'use client'
 
+import Categories from "@/components/Categories";
 import { db } from "@/config/firebase";
 import { ProductProps } from "@/shared/interfaces/product";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { StepBack, StepForward } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,12 +20,16 @@ export default function ProductsPage() {
 function Products() {
   const [page, setPage] = useState(0)
   const [products, setProducts] = useState<ProductProps[]>([])
+  const param_id = 'laptop'
 
   const productsCollectionRef = collection(db, 'products')
+  const q = query(collection(db, "cities"), where("category", "==", param_id));
+  const collectionRef = !!param_id ? q : productsCollectionRef
+debugger
   useEffect(() => {
     const getProductList = async () => {
       try {
-        const data = await getDocs(productsCollectionRef)
+        const data = await getDocs(collectionRef)
 
         const filteredData = data.docs.map((doc) => ({
           id: doc.id,
@@ -36,6 +41,7 @@ function Products() {
           quantity: doc.data().quantity,
         }))
 
+        debugger
         setProducts(filteredData)
       } catch (err) {
         console.error(err)
@@ -60,6 +66,7 @@ function Products() {
   if (!products[0]) {
     return (
       <div>
+        <Categories />
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Produtos não encontrados</h2>
@@ -72,6 +79,7 @@ function Products() {
 
   return (
     <div>
+      <Categories />
       <div className="bg-white/95 backdrop-blur-sm border-b border-amber-100 top-0 z-50 p-8">
         <main className="container mx-auto px-4 py-12">
           <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">

@@ -5,7 +5,6 @@ import { Button } from './ui/button';
 import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
 import { useCart } from '@/contexts/cart';
 
-
 interface ItemCart {
   item: CartItem
 }
