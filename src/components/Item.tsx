@@ -1,4 +1,4 @@
-import { Check, X } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { CartItem } from '@/shared/interfaces/item.interface';
 import Image from 'next/image';
 import { Button } from './ui/button';

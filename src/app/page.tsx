@@ -1,29 +1,21 @@
 'use client'
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button'
-
-import { books, pokemons } from '../components/data'
-import ItemListContainer from '../components/ItemListContainer'
+import Link from "next/link"
 
 export default function Home() {
-  const [category, setCategory] = useState('books');
-  const categoryToggle = category == 'books' ? 'pokemons' : 'books'
-
-  const changeType = () => { setCategory(categoryToggle); };
 
   return (
-    <div className="text-0xl text-amber-700">
+    <div className="text-0xl text-amber-700 py-50">
       <div className="container space-x-2 p-2">
-        <div className="text-2xl font-bold">
-          Categoria atual: {category}
+        <div className="text-2xl">
+          Seja bem vindos, Work in progress: veja a pagina de
+          <span className="text-4xl font-bold p-3">
+            <Link href='/produtos'>
+              Produtos
+            </Link>
+          </span>
         </div>
 
-        <Button onClick={changeType}> {categoryToggle} </Button>
-        {category == 'books'
-          ? <ItemListContainer items={books} title={'Livros'} />
-          : <ItemListContainer items={pokemons} title={'Pokemons'} />
-        }
       </div>
     </div>
   )

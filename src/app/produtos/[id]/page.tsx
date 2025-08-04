@@ -10,7 +10,6 @@ import { Label } from "@/components/ui/label";
 import { useCart } from "@/contexts/cart";
 import { Button } from "@/components/ui/button";
 import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
-import Item from "@/components/Item";
 import ItemListContainer from "@/components/ItemListContainer";
 
 
