@@ -1,50 +1,17 @@
 'use client'
 
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ProductProps } from "@/shared/interfaces/product";
-import { db } from "@/config/firebase";
-import { doc, getDoc } from "firebase/firestore";
 import { Label } from "@/components/ui/label";
 import { useCart } from "@/contexts/cart";
 import { Button } from "@/components/ui/button";
 import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
-import ItemListContainer from "@/components/ItemListContainer";
+import useFetchProduct from "@/components/db/product";
 
 export default function ProductPage() {
   const params = useParams();
-  const [product, setProduct] = useState<ProductProps>()
-  const { addToCart, removeFromCart, cart } = useCart()
-
-  useEffect(() => {
-    async function fetchProduct() {
-      const id = params.id
-      try {
-        const docRef = doc(db, "products", String(id));
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
-          setProduct({
-            id: docSnap.id,
-            name: docSnap.data().name,
-            price: docSnap.data().price,
-            description: docSnap.data().description,
-            category: docSnap.data().category,
-            image: docSnap.data().image,
-            quantity: docSnap.data().quantity,
-          })
-        } else {
-          // docSnap.data() will be undefined in this case
-          console.log("No such document!");
-        }
-      } catch (error) {
-        console.error("Erro ao buscar/criar post: ", error)
-      }
-    }
-    fetchProduct()
-  }, [params.id])
+  const { addToCart, removeFromCart } = useCart()
+  const { product } = useFetchProduct(params.id as string)
 
   if (!product) {
     return (
@@ -117,7 +84,6 @@ export default function ProductPage() {
                   </Button>
                 </span>
               </div>
-              <ItemListContainer items={cart} title={'Carrinho'} />
             </div>
           </div>
         </div>
