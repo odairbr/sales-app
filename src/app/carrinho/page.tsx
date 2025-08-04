@@ -11,7 +11,7 @@ const CartPage = () => {
       <div className="text-0xl text-amber-700">
         <div className="container space-x-2 p-2">
           <div className="text-2xl">
-            Não produtos no seu carrinho!
+            Não há produtos no seu carrinho!
           </div>
         </div>
       </div>

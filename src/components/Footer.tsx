@@ -16,7 +16,7 @@ const Footer = () => {
               <span className="text-2xl font-bold text-white">SalesApp</span>
             </div>
             <p className="text-amber-200">
-              Aproveite nossos produtos, livros, brinquedos, cards e mais!
+              Aproveite nossos produtos, eletrônicos, moveis e mais!
             </p>
           </div>
 
