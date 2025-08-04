@@ -1,15 +1,16 @@
 export interface ItemListProps {
   title?: string;
-  items: ItemProps[];
+  items: CartItem[];
+}
+
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
 }
 
 export interface ItemComponent {
-  item: ItemProps
-}
-
-export interface ItemProps {
-  id: number;
-  name: string;
-  amount: number;
-  available: boolean;
+  item: CartItem
 }

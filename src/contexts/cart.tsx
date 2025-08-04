@@ -1,12 +1,6 @@
 'use client'
+import { CartItem } from "@/shared/interfaces/item.interface";
 import { createContext, useContext, useEffect, useState } from "react";
-
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-}
 
 interface CartContextType {
   cart: CartItem[];
