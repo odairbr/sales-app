@@ -10,11 +10,12 @@ interface FetchProductProps<ProductProps> {
 const useFetchProduct = (id: string): FetchProductProps<ProductProps> => {
   const [product, setProduct] = useState<ProductProps | undefined>()
 
-  const docRef = doc(db, "products", String(id));
   useEffect(() => {
     async function fetchProduct() {
 
       try {
+        const docRef = doc(db, "products", String(id));
+
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -37,7 +38,7 @@ const useFetchProduct = (id: string): FetchProductProps<ProductProps> => {
       }
     }
     fetchProduct()
-  }, [id, docRef])
+  }, [id])
 
   return { product };
 }

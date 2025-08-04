@@ -1,14 +1,12 @@
 'use client'
 
 import Categories from "@/components/Categories";
-import { db } from "@/config/firebase";
-import { ProductProps } from "@/shared/interfaces/product";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import useFetchProducts from "@/components/db/products";
 import { StepBack, StepForward } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 
 export default function ProductsPage() {
   return (
@@ -20,38 +18,11 @@ export default function ProductsPage() {
 
 function Products() {
   const [page, setPage] = useState(0)
-  const [products, setProducts] = useState<ProductProps[]>([])
+
   const searchParams = useSearchParams();
   const categoryId = searchParams.get('category') as string
-
-  const productsCollectionRef = collection(db, 'products')
-  const q = query(collection(db, "products"), where("category", "==", categoryId));
-  const collectionRef = !!categoryId ? q : productsCollectionRef
-  useEffect(() => {
-    const getProductList = async () => {
-      try {
-        const data = await getDocs(collectionRef)
-
-        const filteredData = data.docs.map((doc) => ({
-          id: doc.id,
-          name: doc.data().name,
-          price: doc.data().price,
-          description: doc.data().description,
-          category: doc.data().category,
-          image: doc.data().image,
-          quantity: doc.data().quantity,
-        }))
-      
-        setProducts(filteredData)
-      } catch (err) {
-        console.error(err)
-      } finally {
-        console.log('produtos buscados')
-      }
-    }
-    getProductList();
-  }, [collectionRef, categoryId])
-
+  console.log(`categoryId: ${categoryId}`)
+  const { products } = useFetchProducts(categoryId as string)
 
   // Paginação
   function nextPage() {
