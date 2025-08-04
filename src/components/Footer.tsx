@@ -20,7 +20,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div>
+          <div className="space-y-4">
             <h3 className="text-white font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>

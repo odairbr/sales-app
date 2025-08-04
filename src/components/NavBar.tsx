@@ -37,7 +37,7 @@ const Header = () => {
           <Link href='/carrinho'>
             <CartWidget />
           </Link>
-          
+
           {/* Login Button */}
           <Login />
         </div>

@@ -12,8 +12,6 @@ import { Button } from "@/components/ui/button";
 import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
 import ItemListContainer from "@/components/ItemListContainer";
 
-
-
 export default function ProductPage() {
   const params = useParams();
   const [product, setProduct] = useState<ProductProps>()

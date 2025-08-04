@@ -5,7 +5,6 @@ import { useCart } from '@/contexts/cart';
 function CartWidget() {
   const { totalItems } = useCart()
 
-
   return (
     <Button variant="outline" size="sm" className="relative">
       <ShoppingCart className="h-4 w-4 mr-2" />
