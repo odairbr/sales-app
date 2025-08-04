@@ -7,6 +7,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { StepBack, StepForward } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
 export default function ProductsPage() {
@@ -20,12 +21,12 @@ export default function ProductsPage() {
 function Products() {
   const [page, setPage] = useState(0)
   const [products, setProducts] = useState<ProductProps[]>([])
-  const param_id = 'laptop'
+  const searchParams = useSearchParams();
+  const categoryId = searchParams.get('category') as string
 
   const productsCollectionRef = collection(db, 'products')
-  const q = query(collection(db, "cities"), where("category", "==", param_id));
-  const collectionRef = !!param_id ? q : productsCollectionRef
-debugger
+  const q = query(collection(db, "products"), where("category", "==", categoryId));
+  const collectionRef = !!categoryId ? q : productsCollectionRef
   useEffect(() => {
     const getProductList = async () => {
       try {
@@ -40,8 +41,7 @@ debugger
           image: doc.data().image,
           quantity: doc.data().quantity,
         }))
-
-        debugger
+      
         setProducts(filteredData)
       } catch (err) {
         console.error(err)
@@ -50,7 +50,7 @@ debugger
       }
     }
     getProductList();
-  }, [page])
+  }, [collectionRef, categoryId])
 
 
   // Paginação
