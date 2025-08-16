@@ -31,7 +31,7 @@ const Footer = () => {
               <li>
                 <Button asChild variant='link'>
                   <a target="_blank"
-                    href="https://github.com/odairbr/CrieSuaLanding-Rosa"
+                    href="https://github.com/odairbr/sales-app"
                   >
                     Github
                   </a>
